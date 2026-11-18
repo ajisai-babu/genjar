@@ -57,22 +57,27 @@ is = defaultClassLoader.getResourceAsStream(resource);
 
 ```
 .
-├── GenJar.java       # 恶意类生成器（ASM 构建字节码 + 打包 zip）
-├── Installer.java    # 最简 Tomcat Servlet 内存马
+├── GenJar.java                    # 恶意类生成器（ASM 构建字节码 + 打包 zip）
+├── Installer.java                 # 最简 Tomcat Servlet 内存马
+├── asm-9.6.jar                    # 依赖：ASM 9.6（已随仓库提供）
+├── servlet-api.jar                # 依赖：Servlet API（编译 Installer 用，已提供）
+├── memshell-party-gui-3.1.0.jar   # 第三方 MemShellParty GUI（可选，已提供）
+├── GenJar.class                   # 编译产物
+├── Installer.class                # 编译产物
 ├── README.md
 └── .gitignore
 ```
-
-> 仓库不包含 `asm-9.6.jar`、`servlet-api.jar` 及 MemShellParty GUI 等第三方二进制，
-> 请按下方说明自行获取。
 
 ## 依赖
 
 | 依赖 | 用途 | 获取方式 |
 | --- | --- | --- |
 | JDK 8 | 编译/运行（class 版本默认 52） | 任意 JDK 8 |
-| ASM 9.6 | 生成字节码 | `curl -LO https://repo1.maven.org/maven2/org/ow2/asm/asm/9.6/asm-9.6.jar` |
-| Servlet API | `Installer.java` 编译期使用 | `curl -LO https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar` |
+| ASM 9.6 | 生成字节码 | 仓库内已带 `asm-9.6.jar` |
+| Servlet API | `Installer.java` 编译期使用 | 仓库内已带 `servlet-api.jar`（运行期由 Tomcat 提供） |
+
+> 如需重新获取依赖：
+> `curl -LO https://repo1.maven.org/maven2/org/ow2/asm/asm/9.6/asm-9.6.jar`
 
 `Installer.class` 若改用第三方生成器产出，可直接参考 [MemShellParty](https://github.com/JavaSecLab/MemShellParty) 的 Base64 输出。
 
