@@ -1,0 +1,16 @@
+# Build artifacts
+*.class
+out/
+target/
+build/
+
+# Third-party / vendor binaries (see README for how to fetch)
+*.jar
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+*.swp
